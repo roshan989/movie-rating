@@ -30,13 +30,13 @@ public class MoviesService {
 
 	
 	public List<Movies> findTopTen() {
+		try {
 		var list = movieDao.findTopTen();
-//		try {
-//			list = list.subList(0, 10);
-//		} catch (Exception e) {
-//			log.error("List have less than 10 records or error in record");
-//		}
 		return list;
+		}catch (Exception e) {
+			log.error(" error is :{}",e.getMessage());
+			return new ArrayList<Movies>();
+		}
 	}
 
 	public String saveMovie(Movies movie) {
@@ -47,7 +47,6 @@ public class MoviesService {
 				r.setTconst(movie.getTconst());
 				movie.setRating(r);
 				Movies a = movieDao.saveAndFlush(movie);
-//				Rating rSave=ratingDao.saveAndFlush(r);
 
 				log.info("Movie is saved with id :{}", a.getTconst(), r.toString());
 				return "Success";
