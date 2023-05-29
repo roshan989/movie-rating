@@ -46,7 +46,7 @@ public class Movies implements Serializable {
 	@Column(name = "generes")
 	String generes;
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@OneToOne(mappedBy = "movies", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	Rating rating;
 
